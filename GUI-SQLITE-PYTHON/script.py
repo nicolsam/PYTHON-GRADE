@@ -129,21 +129,3 @@ class Database():
                 print("Conexão com Banco de dados finalizada.")
 
         return True;
-
-database = Database('frutas.db')
-
-database.delete_fruit(4)
-
-database.insert_fruit(4, 'Açaí', 'Preta');
-
-frutas = database.select_all('frutas')
-
-for fruta in frutas:
-    print(fruta)
-
-fruta = database.select_by_id('frutas', 4)
-print('Fruta ID 4: ', fruta)
-
-fruta_updated = database.update_fruit(4, 'Acerola', 'Vermelha')
-print('Fruta ID 4 UPDATE: ', fruta_updated)
-
