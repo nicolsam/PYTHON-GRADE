@@ -15,6 +15,7 @@ class Database():
         except (Exception, sgbd.Error) as err:
             if(self.connection):
                 print("Falha na conexão com o Banco de Dados: ", err)
+                return False;
 
 
     def select_all(self, table):
@@ -27,6 +28,7 @@ class Database():
 
         except sgbd.DatabaseError as err:
             print(f'Erro no Banco de Dados: {err}')
+            return False;
         
         finally:
 
@@ -34,7 +36,7 @@ class Database():
                 self.cursor.close()
                 self.connection.close()
                 print("Conexão com Banco de dados finalizada.")
-                
+
     def select_by_id(self, table, id):
 
         try:
@@ -46,6 +48,7 @@ class Database():
 
         except sgbd.DatabaseError as err:
             print(f'Erro no Banco de Dados: {err}')
+            return False;
         
         finally:
 
@@ -64,6 +67,7 @@ class Database():
 
         except (sgbd.IntegrityError, sgbd.DatabaseError) as err:
             print(f'Erro no Banco de Dados: {err}')
+            return False;
 
         finally:
 
@@ -71,6 +75,8 @@ class Database():
                 self.cursor.close()
                 self.connection.close()
                 print("Conexão com Banco de dados finalizada.")
+
+        return True;
 
     def update_fruit(self, id, name, color):
 
@@ -82,8 +88,6 @@ class Database():
             ))
 
             self.connection.commit();
-
-            
 
         except sgbd.DatabaseError as err:
             print(f'Erro no Banco de Dados: {err}')
@@ -124,6 +128,7 @@ class Database():
                 self.connection.close()
                 print("Conexão com Banco de dados finalizada.")
 
+        return True;
 
 database = Database('frutas.db')
 
